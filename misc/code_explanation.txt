@@ -1,0 +1,30 @@
+churn csv is suppose to be split into training and test data sets with 80/20 split
+80 % training
+20 % test
+I use the following code:
+
+# divide into training and test data: 80/20 %
+churnx_train, churnx_test,churny_train, churny_test  = train_test_split(
+    churn_df.drop("Churn",axis=1),churn_df["Churn"],test_size=0.2,random_state=0
+)
+
+churnx_train, churnx_test, churny_train, and churny_test are variables where the training and test data will be stored.
+These variables are used to store the following data:
+
+churnx_train: This represents the features/data (independent variables) of the training dataset.
+churnx_test: These are the features/data of the test dataset.
+churny_train: This typically represents the target variable/labels (the variable you're trying to predict) of the training dataset.
+churny_test: This is the target variable/labels of the test dataset.
+
+churn_df.drop("Churn", axis=1): This is the DataFrame containing the features (independent variables) of your dataset.
+The drop method with axis=1 is used to remove the "Churn" column,"Churn" is the target variable that you want to predict,
+and the rest of the columns are features.
+
+churn_df["Churn"]: This is the Series or DataFrame containing the target variable you want to predict, in this case, "Churn."
+
+test_size=0.2: This parameter specifies that you want to allocate 20% of the data to the test set,
+and the remaining 80% will be used for training the machine learning model.
+
+random_state=0: This is used to seed the random number generator, ensuring that the split is reproducible.
+Setting it to a specific number, like 0, ensures that every time you run this code, you'll get the same split if the dataset and parameters remain the same.
+set.seed() in R.
