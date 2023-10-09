@@ -1,3 +1,7 @@
+kaggle´s churn data is used for this homework.
+It can be found here: https://www.kaggle.com/datasets/blastchar/telco-customer-churn/data
+
+
 churn csv is suppose to be split into training and test data sets with 80/20 split
 80 % training
 20 % test
