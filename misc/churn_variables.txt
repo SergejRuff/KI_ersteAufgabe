@@ -1,0 +1,4 @@
+this file explains how the independent variables
+correlate to churn.
+
+My findings:
