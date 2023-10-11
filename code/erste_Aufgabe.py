@@ -5,10 +5,8 @@ import numpy as np
 from convert_column_to_integers import convert_string_columns_to_integers
 from sklearn import tree
 import matplotlib.pyplot as plt
-from sklearn.metrics import roc_curve, auc, accuracy_score, f1_score, precision_score, recall_score
-from sklearn.metrics import precision_recall_curve
-from numpy import sqrt
-from numpy import argmax
+from sklearn.metrics import roc_curve, auc, accuracy_score, f1_score
+
 
 # import churn csv
 churn_df = pd.read_csv("../data/Churn.csv")
@@ -60,8 +58,8 @@ print("The test dataset is {}% of the total dataset".format(round(len(churnx_tes
 clf = tree.DecisionTreeClassifier()
 clf = clf.fit(churnx_train, churny_train)
 
-#fig = plt.figure(figsize=(50, 40))
-#tree.plot_tree(clf, feature_names=churn_df.drop("Churn", axis=1).columns,
+# fig = plt.figure(figsize=(50, 40))
+# tree.plot_tree(clf, feature_names=churn_df.drop("Churn", axis=1).columns,
 #               class_names=class_names_, filled=True)
 
 print("accuracy of training data: {:.3f}".format(
@@ -71,12 +69,12 @@ print("accuracy of test data: {:.3f}".format(
     clf.score(churnx_test, churny_test)
 ))
 
-#fig.savefig("../output/churn_tree.svg")
+# fig.savefig("../output/churn_tree.svg")
 
 # second task
 
 # Use the classifier to make predictions on the test data
-#test_predictions = clf.predict(churnx_test)
+# test_predictions = clf.predict(churnx_test)
 test_predictions = clf.predict_proba(churnx_test)[:, 1]
 
 # Calculate the ROC curve
@@ -85,10 +83,9 @@ fpr, tpr, thresholds = roc_curve(churny_test, test_predictions)
 
 # Calculate the area under the ROC curve (AUC)
 roc_auc = auc(fpr, tpr)
-print('Churn: AUROC = %.3f' % (roc_auc))
+print('Churn: AUROC = %.3f' % roc_auc)
 
-optimal_treshhold = thresholds[np.argmax(tpr-fpr)]
-print("Best Threshold=",optimal_treshhold)
+
 # Plot the ROC curve
 plt.figure(figsize=(8, 6))
 plt.plot(fpr, tpr, color='darkorange', lw=2, label=f'ROC curve (area = {roc_auc:.2f})')
@@ -101,4 +98,42 @@ plt.title('Receiver Operating Characteristic (ROC) Curve')
 plt.legend(loc='lower right')
 plt.show()
 
+# Create a list of different cutoff thresholds to iterate over
+cutoffs = np.linspace(0, 1, 100)
+# Lists to store performance metrics
+f1_scores = []
+accuracy_scores = []
 
+for cutoff in cutoffs:
+    # Convert probabilities to binary predictions using the current cutoff
+    binary_predictions = (test_predictions >= cutoff).astype(int)
+
+    # Calculate F1-score and accuracy for each cutoff
+    f1 = f1_score(churny_test, binary_predictions)
+    accuracy = accuracy_score(churny_test, binary_predictions)
+
+    f1_scores.append(f1)
+    accuracy_scores.append(accuracy)
+
+# Find the index of the best F1-score
+best_f1_index = np.argmax(f1_scores)
+
+# Get the corresponding cutoff and metrics
+best_cutoff = cutoffs[best_f1_index]
+best_f1 = f1_scores[best_f1_index]
+best_accuracy = accuracy_scores[best_f1_index]
+
+# Plot the F1-score and accuracy vs. cutoff
+plt.figure(figsize=(8, 6))
+plt.plot(cutoffs, f1_scores, label='F1-Score')
+plt.plot(cutoffs, accuracy_scores, label='Accuracy')
+plt.axvline(x=best_cutoff, color='red', linestyle='--', label=f'Best Cutoff = {best_cutoff:.2f}')
+plt.xlabel('Cutoff')
+plt.ylabel('Score')
+plt.title('F1-Score and Accuracy vs. Cutoff')
+plt.legend()
+plt.show()
+
+print('Best Cutoff:', best_cutoff)
+print('Best F1-Score:', best_f1)
+print('Accuracy at Best Cutoff:', best_accuracy)
