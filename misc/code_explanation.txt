@@ -1,6 +1,8 @@
 kaggle´s churn data is used for this homework.
 It can be found here: https://www.kaggle.com/datasets/blastchar/telco-customer-churn/data
 
+The desicion tree requires numbers as input. Meaning values like male/female or yes/no
+need to be translated into 1/2.
 
 churn csv is suppose to be split into training and test data sets with 80/20 split
 80 % training
@@ -32,3 +34,4 @@ and the remaining 80% will be used for training the machine learning model.
 random_state=0: This is used to seed the random number generator, ensuring that the split is reproducible.
 Setting it to a specific number, like 0, ensures that every time you run this code, you'll get the same split if the dataset and parameters remain the same.
 set.seed() in R.
+
