@@ -14,13 +14,34 @@ churn_df = pd.read_csv("../data/Churn.csv")
 # summary statistics for df
 print(churn_df.describe())
 
-# barplot for parters (x) and Churn (y)
-plt.bar(courses, values, color ='gray',
-        width = 0.4)
+churn_df["Churn"] = churn_df["Churn"].replace(["No", "Yes"], [0, 1])
+
+# generate a 2x2 frequency table
+partner_churn_table = pd.crosstab(churn_df["Partner"], churn_df["Churn"])
+
+print(partner_churn_table)
+
+# barplot for partner destribution by churn-status
+
+partner_churn_table.plot.bar()
 
 plt.xlabel("partner")
-plt.ylabel("Churn count")
-plt.title("Distribution of partners by Churn")
+plt.ylabel("churn count")
+plt.title("partner distribution by churn-status")
 
 plt.show()
 
+# generate a 2x2 frequency table
+partner_churn_table = pd.crosstab(churn_df["Dependents"], churn_df["Churn"])
+
+print(partner_churn_table)
+
+# barplot for partner distribution by churn-status
+
+partner_churn_table.plot.bar()
+
+plt.xlabel("Dependents")
+plt.ylabel("churn count")
+plt.title("Dependents distribution by churn-status")
+
+plt.show()

@@ -10,6 +10,9 @@ churn_df = pd.read_csv("../data/Churn.csv")
 # replace Male/female with 0/1 for desicion tree
 churn_df["gender"] = churn_df["gender"].replace(["Male","Female"],[0,1])
 
+# replace yes/no with 0/1 for desicion tree
+churn_df = churn_df.replace(["No","Yes"],[0,1])
+
 # divide into training and test data: 80/20 %
 churnx_train, churnx_test, churny_train, churny_test = train_test_split(
     churn_df.drop("Churn", axis=1), churn_df["Churn"], test_size=0.2, random_state=0

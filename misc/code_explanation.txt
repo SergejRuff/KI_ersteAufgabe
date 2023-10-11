@@ -3,6 +3,18 @@ It can be found here: https://www.kaggle.com/datasets/blastchar/telco-customer-c
 
 The desicion tree requires numbers as input. Meaning values like male/female or yes/no
 need to be translated into 1/2.
+# replace Male/female with 0/1 for desicion tree
+churn_df["gender"] = churn_df["gender"].replace(["Male","Female"],[0,1])
+
+# replace yes/no with 0/1 for desicion tree
+churn_df = churn_df.replace(["No","Yes"],[0,1])
+
+tip: to generate a 2x2 matrix with the frequencies for 2 coloumns use crosstab-function.
+# generate a 2x2 frequency table for
+partner_churn_table = pd.crosstab(churn_df["Partner"],churn_df["Churn"])
+
+plotting: a plot is only shown when you call it with plt.show() (need matplotlib).
+even if its a panda plot. Otherwise everything is saved to memory but not shown.
 
 churn csv is suppose to be split into training and test data sets with 80/20 split
 80 % training

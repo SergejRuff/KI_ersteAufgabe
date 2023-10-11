@@ -2,3 +2,16 @@ this file explains how the independent variables
 correlate to churn.
 
 My findings:
+
+Those who have partners and dependents (family members) are less likely to churn.
+Meaning we should use those two variables for our decision tree.
+
+
+
+
+
+
+used variables:
+
+dependendts.
+partners.
