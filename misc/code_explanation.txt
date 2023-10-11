@@ -107,3 +107,9 @@ Here is the meaning
 > Object - String/ character
 > Integer64 - whole number 1
 > float64 - floatnumbers 1,5
+
+for future: > pd.cut() can turn continues values into bins/classes. - need to provide bins.
+
+tree can´t use interval values: see option 1 in erste_aufgabe.py.
+.apply(lambda x: x.mid) to select midpoint.
+option 1 doesnt work but is kept in the code for demonstration.

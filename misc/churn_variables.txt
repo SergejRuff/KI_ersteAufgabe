@@ -27,6 +27,7 @@ Otherwise too many unique values are not meant for a decision tree.
 MonthlyCharges
 TotalCharges
 tenure
+> pd.cut() can turn continues values into bins/classes. - need to provide bins.
 
 useless info
 gender.
