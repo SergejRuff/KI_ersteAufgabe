@@ -16,6 +16,16 @@ partner_churn_table = pd.crosstab(churn_df["Partner"],churn_df["Churn"])
 plotting: a plot is only shown when you call it with plt.show() (need matplotlib).
 even if its a panda plot. Otherwise everything is saved to memory but not shown.
 
+Total Charges are not numeric and have a blank space in the values " ".
+The blank space makes transforming the data values into float difficult.
+So we have to remove the " " and replace them with nothing/NAn.
+# Replace spaces with NaN in the "TotalCharges" column
+churn_df["TotalCharges"] = churn_df["TotalCharges"].replace(' ', np.nan)
+np.nan in this case introduces NAn.
+we change datatype with .astype -> # attempt to convert the column to float
+churn_df["TotalCharges"] = churn_df["TotalCharges"].astype(float)
+and remove the nan introduced by np.nan
+
 churn csv is suppose to be split into training and test data sets with 80/20 split
 80 % training
 20 % test

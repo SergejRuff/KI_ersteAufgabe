@@ -9,23 +9,18 @@ churn_df = pd.read_csv("../data/Churn.csv")
 # filter data first
 
 # replace Male/female with 0/1 for desicion tree
-churn_df["gender"] = churn_df["gender"].replace(["Male","Female"],[0,1])
+churn_df["gender"] = churn_df["gender"].replace(["Male", "Female"], [0, 1])
 
 # replace yes/no with 0/1 for desicion tree
-churn_df = churn_df.replace(["No","Yes"],[0,1])
+churn_df = churn_df.replace(["No", "Yes"], [0, 1])
 
 # total charges is not numeric.
-# how datatypes before transformation.
-print("dataframe before datatype change for Total charges coloumn:\n")
-print(churn_df.info())
-# Replace spaces with NaN in the "TotalCharges" column
 churn_df["TotalCharges"] = churn_df["TotalCharges"].replace(' ', np.nan)
 # attempt to convert the column to float
 churn_df["TotalCharges"] = churn_df["TotalCharges"].astype(float)
-# return datatype: Totalcharges should be float now
-print("\n")
-print("dataframe after datatype change for Total charges coloumn:\n")
-print(churn_df.info())
+# now 11 NAs are introduced by transformation. should be removed
+churn_df = churn_df.dropna()
+
 
 # divide into training and test data: 80/20 %
 churnx_train, churnx_test, churny_train, churny_test = train_test_split(
@@ -34,4 +29,3 @@ churnx_train, churnx_test, churny_train, churny_test = train_test_split(
 
 print("The training dataset is {}% of the total dataset".format(round(len(churnx_train)/len(churn_df)*100)))
 print("The test dataset is {}% of the total dataset".format(round(len(churnx_test)/len(churn_df)*100)))
-

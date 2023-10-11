@@ -5,13 +5,19 @@ My findings:
 
 Those who have partners and dependents (family members) are less likely to churn.
 Meaning we should use those two variables for our decision tree.
+Tenure: people who stick longer to a  company are less likely to
+leave said company - longer tenure number = less churn.
 
-
-
-
-
+plot for gender vs churn shows what there is no meaningful diffrence between
+genders.
+Seniors have a higher percentage of churning in comparison to non-seniors.
+Those with higher MonthlyCharges tend to churn more.
 
 used variables:
 
-dependends.
-partners.
+Dependents
+Partner
+tenure
+SeniorCitizen
+MonthlyCharges
+TotalCharges
