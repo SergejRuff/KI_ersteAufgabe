@@ -11,6 +11,12 @@ import matplotlib.pyplot as plt
 # import churn csv
 churn_df = pd.read_csv("../data/Churn.csv")
 
+# print how many values are NA
+print(churn_df.isnull().sum())
+
+# show datatypes
+print(churn_df.info())
+
 # summary statistics for df
 print(churn_df.describe())
 
