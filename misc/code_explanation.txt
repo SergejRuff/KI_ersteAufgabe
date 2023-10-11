@@ -85,6 +85,9 @@ def convert_column_to_integers(df, column_name):
     value_to_integer_mapping = {value: i for i, value in enumerate(unique_values)}
     df[column_name] = df[column_name].map(value_to_integer_mapping)
 > see convert_coloumns_to_integers.py
+> map can take a dictionary and it will use the key to match a value in the coloumn
+and replace the value with the value in the dictionary.
+use enumerate to creat a dictionary.
 
 second function converts every coloumns with characters to integer:
 def convert_string_columns_to_integers(df):
