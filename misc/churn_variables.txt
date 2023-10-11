@@ -12,12 +12,22 @@ plot for gender vs churn shows what there is no meaningful diffrence between
 genders.
 Seniors have a higher percentage of churning in comparison to non-seniors.
 Those with higher MonthlyCharges tend to churn more.
+Higher monthy charge = more likely to churn.
 
 used variables:
 
 Dependents
 Partner
-tenure
 SeniorCitizen
+
+those two are useful but are removed because they have
+too many unique values.
+Idea: you could group the data into bins and run the tree.
+Otherwise too many unique values are not meant for a decision tree.
 MonthlyCharges
 TotalCharges
+tenure
+
+useless info
+gender.
+Customer_ID.
