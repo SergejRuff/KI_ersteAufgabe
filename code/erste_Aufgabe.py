@@ -106,7 +106,7 @@ accuracy_scores = []
 
 for cutoff in cutoffs:
     # Convert probabilities to binary predictions using the current cutoff
-    binary_predictions = (test_predictions >= cutoff).astype(int)
+    binary_predictions = np.where(test_predictions >= cutoff, 1, 0)
 
     # Calculate F1-score and accuracy for each cutoff
     f1 = f1_score(churny_test, binary_predictions)
