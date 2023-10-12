@@ -5,7 +5,7 @@ import numpy as np
 from convert_column_to_integers import convert_string_columns_to_integers
 from sklearn import tree
 import matplotlib.pyplot as plt
-from sklearn.metrics import roc_curve, auc, accuracy_score, f1_score
+from sklearn.metrics import roc_curve, auc, accuracy_score, f1_score, confusion_matrix
 
 
 # import churn csv
@@ -137,3 +137,25 @@ plt.show()
 print('Best Cutoff:', best_cutoff)
 print('Best F1-Score:', best_f1)
 print('Accuracy at Best Cutoff:', best_accuracy)
+
+# Use the classifier to make predictions on the test data
+test_predictions = clf.predict_proba(churnx_test)[:, 1]
+
+# Convert probabilities to binary predictions using the best cutoff
+binary_predictions = np.where(test_predictions >= best_cutoff, 1, 0)
+
+# Calculate the confusion matrix
+conf_matrix = confusion_matrix(churny_test, binary_predictions)
+
+# Calculate specificity and sensitivity
+true_negative = conf_matrix[0, 0]
+false_positive = conf_matrix[0, 1]
+false_negative = conf_matrix[1, 0]
+true_positive = conf_matrix[1, 1]
+
+specificity = true_negative / (true_negative + false_positive)
+sensitivity = true_positive / (true_positive + false_negative)
+
+# Print the specificity and sensitivity
+print('Specificity:', specificity)
+print('Sensitivity:', sensitivity)

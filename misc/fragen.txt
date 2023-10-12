@@ -1,0 +1,27 @@
+Frage für freitag Treffen.
+
+Wieso kriege ich zwei verschiedene best cutoffs -> 0,36 oder 0,23.
+> Kriegen verschiedene Cutoffs- Warum?
+
+Was soll man besser nutzen .predict und predictprob und warum?
+
+False Negativ bedeutet, dass mein modell z.b. bei einem Patienten, der
+Krebs hat, keinen Krebs diagnostiziert.
+False positive bedeutet, dass mein Modell Krebs diagnoszitiert,
+obwohl kein Krebs da ist -> Hodenkrebs bei einer Cis Frau diagnoszitieren.
+
+Ist ROC und AUC nur für binäre Klassifikatoren gedacht?
+
+test_predictions = clf.predict(churnx_test)
+test_predictions = clf.predict_proba(churnx_test)[:, 1]
+> Unterschied?
+> Was braucht Roc-Curve als Input?
+
+> tree.plot_tree(clf, feature_names=churn_df.drop("Churn", axis=1).columns,
+               class_names=class_names_, filled=True)
+> Coloumns oder Coloumn names übergeben oder akzeptiert es beides?
+> Response als zahl oder Label übergeben?
+> Features zahlen, label in coloumns.
+
+Reicht nicht aus, weil Metriken nicht ablesbar sind aus Roc-Curve.
+Muss F1-Score, Accuracy und andere Metriken nicht ablesbar sind.
