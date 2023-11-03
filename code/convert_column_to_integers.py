@@ -29,3 +29,4 @@ def convert_string_columns_to_integers(df):
     for column_name in df.columns:
         if df[column_name].dtype == 'object':
             convert_column_to_integers(df, column_name)
+

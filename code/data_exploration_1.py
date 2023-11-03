@@ -11,7 +11,8 @@ import numpy as np
 import seaborn as sns
 
 # import churn csv
-churn_df = pd.read_csv("../data/Churn.csv")
+churn_df = pd.read_csv("data/Churn.csv")
+
 
 # total charges is not numeric.
 # how datatypes before transformation.
@@ -116,4 +117,3 @@ plt.xlabel('MonthlyCharges')
 plt.ylabel('Density')
 plt.legend()
 plt.show()
-
